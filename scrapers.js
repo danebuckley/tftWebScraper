@@ -61,15 +61,16 @@ compMap.set("Belt", 391);
 compMap.set("Spatula", 730);
 
 
-
-
 var x = new Array(59);
+let userInput = []; //global, probably shouldn't be....
 
 
 for (var i = 0; i < 59; i++) {
     x[i] = new Array(4);
     x[i][0] = champList[i];
 }
+
+startProgram();
 
 //scrapeProduct("https://app.mobalytics.gg/tft/champions/");
 
@@ -118,9 +119,13 @@ async function scrapeProduct(url) { //rewrite this with multithreading, its real
 
 
 function startProgram() { //this is where the fun begins
-    console.log(x[0][2]);
-    console.log(x[10][2]);
-    console.log(x[20][2]);
+    userInput = ["Tear", "Glove", "Sword"];
+    finalArray = [];
+    for (let x = 0; x < userInput.length; x++) {
+        for (let y = x; y < userInput.length; y++) {
+            finalArray.push(createItem(userInput[x], userInput[y]));
+        }
+    }
 }
 
 
@@ -130,6 +135,20 @@ function createItem(itemOne, itemTwo) {
 }
 
 
+function getCompenent(userInput) {
+
+}
+
+// function addToList() { 
+//     let list = []; 
+//     let input = ''; 
+//     while (input !== 'quit') { 
+//         input = prompt('Enter an item (or type "quit" to exit):'); 
+//         if (input !== 'quit') { 
+//             list.push(input); 
+//         } 
+//     } return list; 
+// }
 
 
 
@@ -140,15 +159,5 @@ function createItem(itemOne, itemTwo) {
 
 
 
-// const rl = readline.createInterface({
-//     input: process.stdin,
-//     output: process.stdout
-// })
 
-// let userInput = "";
 
-// rl.question("What champion?\n", function (string) {
-//     userInput = string;
-
-//     rl.close();
-// });
