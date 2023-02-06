@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 const readline = require('readline');
+const { start } = require('repl');
 const { EventEmitter } = require('stream');
 
 const itemMap = new Map();
@@ -69,10 +70,9 @@ for (var i = 0; i < 59; i++) {
     x[i] = new Array(4);
     x[i][0] = champList[i];
 }
+scrapeProduct("https://app.mobalytics.gg/tft/champions/");
+//startProgram();
 
-startProgram();
-
-//scrapeProduct("https://app.mobalytics.gg/tft/champions/");
 
 
 
@@ -126,6 +126,22 @@ function startProgram() { //this is where the fun begins
             finalArray.push(createItem(userInput[x], userInput[y]));
         }
     }
+
+    let champCounter = 0;
+
+
+    for (let curItem = 0; curItem < finalArray.length; curItem++) {
+        for (let r = 0; r < 59; r++) {
+            if (finalArray[curItem] == x[r][1]) {
+                console.log(x[r][0] + " " + finalArray[curItem]);
+            } else if (finalArray[curItem] == x[r][2]) {
+                console.log(x[r][0] + " " + finalArray[curItem]);
+            } else if (finalArray[curItem] == x[r][3]) {
+                console.log(x[r][0] + " " + finalArray[curItem]);
+            }
+        }
+    }
+
 }
 
 
