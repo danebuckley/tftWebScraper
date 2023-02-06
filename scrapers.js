@@ -79,9 +79,16 @@ scrapeProduct("https://app.mobalytics.gg/tft/champions/");
 async function scrapeProduct(url) { //rewrite this with multithreading, its really slow right now. maybe that will help.
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
+    // const page2 = await browser.newPage();
 
-    for (let i = 0; i < 58; i++) {
+    for (let i = 0; i < 58; i+=2) {
         await page.goto(url + champList[i]);
+        // await page2.goto(url + champList[i+2])
+
+        console.log(url+champList[i]);
+        // console.log(url+champList[i+1]);
+
+
         const [iOne] = await page.$x('//*[@id="container"]/div/main/div/div/div[2]/div[1]/div[4]/div/div/div[1]/div[2]/p');
         const itemOne = await iOne.getProperty('textContent');
         const itemOneTxt = await itemOne.jsonValue();
@@ -94,23 +101,27 @@ async function scrapeProduct(url) { //rewrite this with multithreading, its real
         const itemThree = await iThree.getProperty('textContent');
         const itemThreeTxt = await itemThree.jsonValue();
 
-        
+        // const [i2One] = await page2.$x('//*[@id="container"]/div/main/div/div/div[2]/div[1]/div[4]/div/div/div[1]/div[2]/p');
+        // const i2temOne = await i2One.getProperty('textContent');
+        // const i2temOneTxt = await i2temOne.jsonValue();
+
+        // const [i2Two] = await page2.$x('//*[@id="container"]/div/main/div/div/div[2]/div[1]/div[4]/div/div/div[2]/div[2]/p');
+        // const i2temTwo = await i2Two.getProperty('textContent');
+        // const i2temTwoTxt = await i2temTwo.jsonValue();
+
+        // const [i2Three] = await page2.$x('//*[@id="container"]/div/main/div/div/div[2]/div[1]/div[4]/div/div/div[3]/div[2]/p');
+        // const i2temThree = await i2Three.getProperty('textContent');
+        // const i2temThreeTxt = await i2temThree.jsonValue();
+
+
         x[i][1] = itemOneTxt;
         x[i][2] = itemTwoTxt;
         x[i][3] = itemThreeTxt;
+
+        // x[i+1][1] = i2temOneTxt;
+        // x[i+1][2] = i2temTwoTxt;
+        // x[i+1][3] = i2temThreeTxt;
     }
-
-    // let componentsOne = itemMap.get(itemOneTxt);     THIS IS WHERE WE SEPERATE COMPONENTS
-    // let componentsTwo = itemMap.get(itemTwoTxt);
-    // let componentsThree = itemMap.get(itemThreeTxt);
-
-    // const arrayOne = componentsOne.split(" ");
-    // const arrayTwo = componentsTwo.split(" ");
-    // const arrayThree = componentsThree.split(" ");
-    
-    // console.log(arrayOne[0], arrayOne[1]);
-    // console.log(arrayTwo[0], arrayTwo[1]);
-    // console.log(arrayThree[0], arrayThree[1]);
 
 
     browser.close();
@@ -119,16 +130,13 @@ async function scrapeProduct(url) { //rewrite this with multithreading, its real
 
 
 function startProgram() { //this is where the fun begins
-    userInput = ["Tear", "Glove", "Sword"];
+    userInput = ["Belt","Bow","Rod"];
     finalArray = [];
-    for (let x = 0; x < userInput.length; x++) {
-        for (let y = x; y < userInput.length; y++) {
+    for (let x = 0; x < userInput.length-1; x++) {
+        for (let y = x+1; y < userInput.length; y++) {
             finalArray.push(createItem(userInput[x], userInput[y]));
         }
     }
-
-    let champCounter = 0;
-
 
     for (let curItem = 0; curItem < finalArray.length; curItem++) {
         for (let r = 0; r < 59; r++) {
@@ -141,7 +149,6 @@ function startProgram() { //this is where the fun begins
             }
         }
     }
-
 }
 
 
