@@ -1,5 +1,7 @@
 body {
     background-color:cadetblue;
+    padding: 0;
+    border: none;
 }
 
 button {

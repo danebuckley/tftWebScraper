@@ -162,17 +162,9 @@ function getCompenent(userInput) {
 
 }
 
-// function addToList() { 
-//     let list = []; 
-//     let input = ''; 
-//     while (input !== 'quit') { 
-//         input = prompt('Enter an item (or type "quit" to exit):'); 
-//         if (input !== 'quit') { 
-//             list.push(input); 
-//         } 
-//     } return list; 
-// }
-
+function plusOneTear() {
+    console.log('Button!');
+}
 
 
 
