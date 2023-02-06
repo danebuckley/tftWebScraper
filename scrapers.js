@@ -3,6 +3,7 @@ const readline = require('readline');
 const { EventEmitter } = require('stream');
 
 const itemMap = new Map();
+const compMap = new Map();
 const champList = new Array("Alistar", "Annie", "Aphelios", "Ashe", "aurelionsol", "Belveth", "Blitzcrank", "Camille", "Chogath", "Draven", "Ekko", "Ezreal", "Fiddlesticks", "Fiora", "Galio", "Gangplank", "Janna", "Jax", "Jinx", "Kaisa", "Kayle", "Leblanc", "Leesin", "Leona", "lulu", "lux", "malphite", "missfortune", "mordekaiser", "nasus", "nilah", "nunu", "poppy", "rammus", "rell", "renekton", "riven", "samira", "sejuani", "senna", "sett", "sivir", "sona", "soraka", "sylas", "syndra", "taliyah", "talon", "urgot", "vayne", "velkoz", "vi", "viego", "wukong", "yasuo", "yuumi", "zac", "zed", "zoe");
 itemMap.set(1054, 'Deathblade');
 itemMap.set(823, 'Giant Slayer');
@@ -48,6 +49,20 @@ itemMap.set(802, 'Jeweled Gauntlet');
 itemMap.set(1018, "Theif's Gloves");
 itemMap.set(1239, 'Renegade Emblem');
 itemMap.set(1023, 'Anima Squad Emblem');
+
+compMap.set("Tear", 396);
+compMap.set("Bow", 296);
+compMap.set("Glove", 509);
+compMap.set("Vest", 418);
+compMap.set("Cloak", 490);
+compMap.set("Sword", 527);
+compMap.set("Rod", 293);
+compMap.set("Belt", 391);
+compMap.set("Spatula", 730);
+
+
+
+
 var x = new Array(59);
 
 
@@ -55,8 +70,6 @@ for (var i = 0; i < 59; i++) {
     x[i] = new Array(4);
     x[i][0] = champList[i];
 }
-
-createItem("a", "a"); //for testing
 
 //scrapeProduct("https://app.mobalytics.gg/tft/champions/");
 
@@ -113,26 +126,7 @@ function startProgram() { //this is where the fun begins
 
 
 function createItem(itemOne, itemTwo) {
-    let tear = 396;
-    let bow = 296;
-    let glove = 509;
-    let vest = 418;
-    let cloak = 490;
-    let sword = 527;
-    let rod = 293;
-    let belt = 391;
-    let spat = 730;
-    let currIt = 0;
-    let x = new Array(396,296,509,418,490,527,293,391,730);
-
-    let y = new Array(45);
-
-    for (let j = 0; j < 9; j++) {
-        for (let r = j; r < 9; r++) {
-            y[currIt] = x[j] + x[r];
-            currIt++;
-        }
-    }
+    return itemMap.get(compMap.get(itemOne) + compMap.get(itemTwo));
 }
 
 
