@@ -3,6 +3,21 @@ const readline = require('readline');
 const { start } = require('repl');
 const { EventEmitter } = require('stream');
 
+// const tearButton = document.querySelector('.tear button');
+
+
+let numTears = 0;
+let numRods = 0;
+let numBelts = 0;
+let numSpats = 0;
+let numBows = 0;
+let numCloaks = 0;
+let numVests = 0;
+let numSwords = 0;
+let numGloves = 0;
+
+
+
 const itemMap = new Map();
 const compMap = new Map();
 const champList = new Array("Alistar", "Annie", "Aphelios", "Ashe", "aurelionsol", "Belveth", "Blitzcrank", "Camille", "Chogath", "Draven", "Ekko", "Ezreal", "Fiddlesticks", "Fiora", "Galio", "Gangplank", "Janna", "Jax", "Jinx", "Kaisa", "Kayle", "Leblanc", "Leesin", "Leona", "lulu", "lux", "malphite", "missfortune", "mordekaiser", "nasus", "nilah", "nunu", "poppy", "rammus", "rell", "renekton", "riven", "samira", "sejuani", "senna", "sett", "sivir", "sona", "soraka", "sylas", "syndra", "taliyah", "talon", "urgot", "vayne", "velkoz", "vi", "viego", "wukong", "yasuo", "yuumi", "zac", "zed", "zoe");
@@ -64,6 +79,8 @@ compMap.set("Spatula", 730);
 
 var x = new Array(59);
 let userInput = []; //global, probably shouldn't be....
+
+// tearButton.addEventListener('click', logThat);
 
 
 for (var i = 0; i < 59; i++) {
@@ -158,21 +175,74 @@ function createItem(itemOne, itemTwo) {
 }
 
 
-function getCompenent(userInput) {
-
+function incrementTear() {
+    let element = document.getElementById('tearNum');
+    var value = element.innerHTML;
+    ++value;
+    document.getElementById('tearNum').innerHTML = value;
+    numTears++;
 }
 
-function plusOneTear() {
-    console.log('Button!');
+function incrementRod() {
+    let element = document.getElementById('rodNum');
+    var value = element.innerHTML;
+    ++value;
+    document.getElementById('rodNum').innerHTML = value;
+    numRods++;
 }
 
+function incrementVest() {
+    let element = document.getElementById('vestNum');
+    var value = element.innerHTML;
+    ++value;
+    document.getElementById('vestNum').innerHTML = value;
+    numVests++;
+}
 
+function incrementSword() {
+    let element = document.getElementById('swordNum');
+    var value = element.innerHTML;
+    ++value;
+    document.getElementById('swordNum').innerHTML = value;
+    numSwords++;
+}
 
+function incrementSpat() {
+    let element = document.getElementById('spatNum');
+    var value = element.innerHTML;
+    ++value;
+    document.getElementById('spatNum').innerHTML = value;
+    numSpats++;
+}
 
+function incrementBelt() {
+    let element = document.getElementById('beltNum');
+    var value = element.innerHTML;
+    ++value;
+    document.getElementById('beltNum').innerHTML = value;
+    numBelts++;
+}
 
+function incrementCloak() {
+    let element = document.getElementById('cloakNum');
+    var value = element.innerHTML;
+    ++value;
+    document.getElementById('cloakNum').innerHTML = value;
+    numCloaks++;
+}
 
+function incrementGlove() {
+    let element = document.getElementById('gloveNum');
+    var value = element.innerHTML;
+    ++value;
+    document.getElementById('gloveNum').innerHTML = value;
+    numGloves++;
+}
 
-
-
-
-
+function incrementBow() {
+    let element = document.getElementById('bowNum');
+    var value = element.innerHTML;
+    ++value;
+    document.getElementById('bowNum').innerHTML = value;
+    numBows++;
+}

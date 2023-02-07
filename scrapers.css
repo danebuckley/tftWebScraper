@@ -1,10 +1,18 @@
 body {
     background-color:cadetblue;
-    padding: 0;
-    border: none;
+
 }
 
 button {
     background-color:aquamarine;
     border-radius: 8px;
+}
+
+button:hover {
+    border:black 5px solid;
+}
+
+.button-text { 
+    font-weight: bold;
+    font-size: 20px;
 }

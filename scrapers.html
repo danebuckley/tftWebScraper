@@ -1,47 +1,63 @@
 <!DOCTYPE html>
-<script defer src="src/scrapers.js" charset="utf-8"></script>
+<script defer src="scrapers.js" charset="utf-8"></script>
 <html lang ="en" dir="ltr">
     <head>
         <link rel="stylesheet" href="scrapers.css">
         <meta charset="utf-8">
         <title>TFT BIS Items</title>
-        <script defer src="src/index.js" charset="utf-8"></script>
+        <script defer src="scrapers.js" charset="utf-8"></script>
     </head>
     <body>
         <div id="items">
-
         </div>
-        <button type="submit">
-            <img src="tear.png"/>
-        </button>
-        <button type="submit">
-            <img src="sword.png"/>
-        </button>
-        <button type="submit">
-            <img src="belt.png"/>
-        </button>
-        <div>
-        <button type="submit">
-            <img src="cloak.png"/>
-        </button>
+            <button class="button" onclick="incrementTear()">
+                <img src="tear.png"/>
+                <h1 class="button-text" id="tearNum">0</h1>
+            </button>
+                <button class="button" onclick="incrementSword()">
+                    <img src="sword.png"/>
+                    <h1 class="button-text" id="swordNum">0</h1>
 
-        <button type="submit">
-            <img src="rod.png"/>
-        </button>
-        <button type="submit">
-            <img src="vest.png"/>
+                </button>
+            <button class="button" onclick="incrementBelt()">
+                <img src="belt.png"/>
+                <h1 class="button-text" id="beltNum">0</h1>
+
+            </button>
+
+
+        <div>
+            <button class="button" onclick="incrementCloak()">
+                <img src="cloak.png"/>
+                <h1 class="button-text" id="cloakNum">0</h1>
+            </button>
+                <button class="button" onclick="incrementRod()">
+                    <img src="rod.png"/>
+                    <h1 class="button-text" id="rodNum">0</h1>
+                </button>
+            <button class="button" onclick="incrementVest()">
+                <img src="vest.png"/>
+                <h1 class="button-text" id="vestNum">0</h1>
         </button>
     </div>
+
 <div>
-        <button type="submit">
+        <button class="button" onclick="incrementGlove()">
             <img src="glove.png"/>
+            <h1 class="button-text" id="gloveNum">0</h1>
+
         </button>
-        <button type="submit">
+        <button class="button" onclick="incrementBow()">
             <img src="bow.png"/>
+            <h1 class="button-text" id="bowNum">0</h1>
+
         </button>
-        <button type="submit">
+        <button class="button" onclick="incrementSpat()">
             <img src="spat.png"/>
+            <h1 class="button-text" id="spatNum">0</h1>
+
         </button>
     </div>
+
     </body>
 </html>
