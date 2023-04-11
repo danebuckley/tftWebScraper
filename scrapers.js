@@ -1,10 +1,7 @@
-const puppeteer = require('puppeteer');
-const readline = require('readline');
-const { start } = require('repl');
-const { EventEmitter } = require('stream');
-
-// const tearButton = document.querySelector('.tear button');
-
+// import { launch } from 'puppeteer';
+// import readline from 'readline';
+// import { start } from 'repl';
+// import { EventEmitter } from 'stream';
 
 let numTears = 0;
 let numRods = 0;
@@ -20,7 +17,7 @@ let numGloves = 0;
 
 const itemMap = new Map();
 const compMap = new Map();
-const champList = new Array("Alistar", "Annie", "Aphelios", "Ashe", "aurelionsol", "Belveth", "Blitzcrank", "Camille", "Chogath", "Draven", "Ekko", "Ezreal", "Fiddlesticks", "Fiora", "Galio", "Gangplank", "Janna", "Jax", "Jinx", "Kaisa", "Kayle", "Leblanc", "Leesin", "Leona", "lulu", "lux", "malphite", "missfortune", "mordekaiser", "nasus", "nilah", "nunu", "poppy", "rammus", "rell", "renekton", "riven", "samira", "sejuani", "senna", "sett", "sivir", "sona", "soraka", "sylas", "syndra", "taliyah", "talon", "urgot", "vayne", "velkoz", "vi", "viego", "wukong", "yasuo", "yuumi", "zac", "zed", "zoe");
+const champList = new Array("Alistar", "Annie", "Aphelios", "Ashe", "aurelionsol", "Belveth", "Blitzcrank", "Camille", "Chogath", "Draven", "Ekko", "Ezreal", "Fiddlesticks", "Fiora", "Galio", "Gangplank", "Janna", "Jax", "Jinx", "Kaisa", "Kayle", "Leblanc", "Leesin", "Leona", "lulu", "lux", "malphite", "missfortune", "mordekaiser", "nasus", "nilah", "nunu", "poppy", "rammus", "rell", "renekton", "riven", "samira", "sejuani", "senna", "sett", "sivir", "sona", "soraka", "sylas", "syndra", "taliyah", "talon", "urgot", "vayne", "velkoz", "vi", "viego", "wukong", "yasuo", "yuumi", "zac", "zed", "zoe"); //this needs to be scraped as well.
 itemMap.set(1054, 'Deathblade');
 itemMap.set(823, 'Giant Slayer');
 itemMap.set(945, 'Edge of Night');
@@ -80,33 +77,33 @@ compMap.set("Spatula", 730);
 var x = new Array(59);
 let userInput = []; //global, probably shouldn't be....
 
-// tearButton.addEventListener('click', logThat);
 
 
 for (var i = 0; i < 59; i++) {
     x[i] = new Array(4);
     x[i][0] = champList[i];
 }
-scrapeProduct("https://app.mobalytics.gg/tft/champions/");
-//startProgram();
+
+
+//scrapeProduct("https://app.mobalytics.gg/tft/champions/");
 
 
 
-
-async function scrapeProduct(url) { //rewrite this with multithreading, its really slow right now. maybe that will help.
-    const browser = await puppeteer.launch();
+async function scrapeProduct(url) { //nope
+    //alert(puppeteer);
+    const browser = await launch();
     const page = await browser.newPage();
     // const page2 = await browser.newPage();
 
-    for (let i = 0; i < 58; i+=2) {
+
+    const champCount = 58;
+
+    for (let i = 0; i < champCount; i++) {
         await page.goto(url + champList[i]);
-        // await page2.goto(url + champList[i+2])
-
         console.log(url+champList[i]);
-        // console.log(url+champList[i+1]);
 
 
-        const [iOne] = await page.$x('//*[@id="container"]/div/main/div/div/div[2]/div[1]/div[4]/div/div/div[1]/div[2]/p');
+        const [iOne] = await page.$x('//*[@id="container"]/div/main/div/div/div[2]/div[1]/div[4]/div/div/div[1]/div[2]/p'); //this will break on website update, bad for production
         const itemOne = await iOne.getProperty('textContent');
         const itemOneTxt = await itemOne.jsonValue();
 
@@ -118,37 +115,22 @@ async function scrapeProduct(url) { //rewrite this with multithreading, its real
         const itemThree = await iThree.getProperty('textContent');
         const itemThreeTxt = await itemThree.jsonValue();
 
-        // const [i2One] = await page2.$x('//*[@id="container"]/div/main/div/div/div[2]/div[1]/div[4]/div/div/div[1]/div[2]/p');
-        // const i2temOne = await i2One.getProperty('textContent');
-        // const i2temOneTxt = await i2temOne.jsonValue();
-
-        // const [i2Two] = await page2.$x('//*[@id="container"]/div/main/div/div/div[2]/div[1]/div[4]/div/div/div[2]/div[2]/p');
-        // const i2temTwo = await i2Two.getProperty('textContent');
-        // const i2temTwoTxt = await i2temTwo.jsonValue();
-
-        // const [i2Three] = await page2.$x('//*[@id="container"]/div/main/div/div/div[2]/div[1]/div[4]/div/div/div[3]/div[2]/p');
-        // const i2temThree = await i2Three.getProperty('textContent');
-        // const i2temThreeTxt = await i2temThree.jsonValue();
-
-
         x[i][1] = itemOneTxt;
         x[i][2] = itemTwoTxt;
         x[i][3] = itemThreeTxt;
-
-        // x[i+1][1] = i2temOneTxt;
-        // x[i+1][2] = i2temTwoTxt;
-        // x[i+1][3] = i2temThreeTxt;
     }
-
+    console.log(x[0][0]);
 
     browser.close();
+
     startProgram();
 }
 
 
-function startProgram() { //this is where the fun begins
+function startProgram() {
     userInput = ["Belt","Bow","Rod"];
     finalArray = [];
+
     for (let x = 0; x < userInput.length-1; x++) {
         for (let y = x+1; y < userInput.length; y++) {
             finalArray.push(createItem(userInput[x], userInput[y]));
@@ -166,6 +148,7 @@ function startProgram() { //this is where the fun begins
             }
         }
     }
+
 }
 
 
@@ -175,74 +158,93 @@ function createItem(itemOne, itemTwo) {
 }
 
 
-function incrementTear() {
-    let element = document.getElementById('tearNum');
-    var value = element.innerHTML;
-    ++value;
-    document.getElementById('tearNum').innerHTML = value;
-    numTears++;
-}
+//This is all the button and counter handling
+//Tear
+let totalTears = 0; //Count of how many tears user has recorded
+let tearButton = document.getElementById('tearButton');
+let tearElement = document.getElementById('tearNum');
 
-function incrementRod() {
-    let element = document.getElementById('rodNum');
-    var value = element.innerHTML;
-    ++value;
-    document.getElementById('rodNum').innerHTML = value;
-    numRods++;
-}
+tearButton.addEventListener('click', function(){
+    totalTears+=1;
+    tearElement.innerHTML = totalTears;
+})
 
-function incrementVest() {
-    let element = document.getElementById('vestNum');
-    var value = element.innerHTML;
-    ++value;
-    document.getElementById('vestNum').innerHTML = value;
-    numVests++;
-}
+//Rod
+let totalRods = 0;
+let rodButton = document.getElementById('rodButton');
+let rodElement = document.getElementById('rodNum');
 
-function incrementSword() {
-    let element = document.getElementById('swordNum');
-    var value = element.innerHTML;
-    ++value;
-    document.getElementById('swordNum').innerHTML = value;
-    numSwords++;
-}
+rodButton.addEventListener('click', function(){
+    totalRods+=1;
+    rodElement.innerHTML = totalRods;
+})
 
-function incrementSpat() {
-    let element = document.getElementById('spatNum');
-    var value = element.innerHTML;
-    ++value;
-    document.getElementById('spatNum').innerHTML = value;
-    numSpats++;
-}
+//Vest
+let totalVests = 0;
+let vestButton = document.getElementById('vestButton');
+let vestElement = document.getElementById('vestNum');
 
-function incrementBelt() {
-    let element = document.getElementById('beltNum');
-    var value = element.innerHTML;
-    ++value;
-    document.getElementById('beltNum').innerHTML = value;
-    numBelts++;
-}
+vestButton.addEventListener('click', function(){
+    totalVests+=1;
+    vestElement.innerHTML = totalVests;
+})
 
-function incrementCloak() {
-    let element = document.getElementById('cloakNum');
-    var value = element.innerHTML;
-    ++value;
-    document.getElementById('cloakNum').innerHTML = value;
-    numCloaks++;
-}
+//Sword
+let totalSwords = 0;
+let swordButton = document.getElementById('swordButton');
+let swordElement = document.getElementById('swordNum');
 
-function incrementGlove() {
-    let element = document.getElementById('gloveNum');
-    var value = element.innerHTML;
-    ++value;
-    document.getElementById('gloveNum').innerHTML = value;
-    numGloves++;
-}
+swordButton.addEventListener('click', function(){
+    totalSwords+=1;
+    swordElement.innerHTML = totalSwords;
+})
 
-function incrementBow() {
-    let element = document.getElementById('bowNum');
-    var value = element.innerHTML;
-    ++value;
-    document.getElementById('bowNum').innerHTML = value;
-    numBows++;
-}
+//Spat
+let totalSpats = 0;
+let spatButton = document.getElementById('spatButton');
+let spatElement = document.getElementById('spatNum');
+
+spatButton.addEventListener('click', function(){
+    totalSpats+=1;
+    spatElement.innerHTML = totalSpats;
+})
+
+//Belt
+let totalBelts = 0;
+let beltButton = document.getElementById('beltButton');
+let beltElement = document.getElementById('beltNum');
+
+beltButton.addEventListener('click', function(){
+    totalBelts+=1;
+    beltElement.innerHTML = totalBelts;
+})
+
+//Cloak
+let totalCloaks = 0;
+let cloakButton = document.getElementById('cloakButton');
+let cloakElement = document.getElementById('cloakNum');
+
+cloakButton.addEventListener('click', function(){
+    totalCloaks+=1;
+    cloakElement.innerHTML = totalCloaks;
+})
+
+//Glove
+let totalGloves = 0;
+let gloveButton = document.getElementById('gloveButton');
+let gloveElement = document.getElementById('gloveNum');
+
+gloveButton.addEventListener('click', function(){
+    totalGloves+=1;
+    gloveElement.innerHTML = totalGloves;
+})
+
+//Bow
+let totalBows = 0;
+let bowButton = document.getElementById('bowButton');
+let bowElement = document.getElementById('bowNum');
+
+bowButton.addEventListener('click', function(){
+    totalBows+=1;
+    bowElement.innerHTML = totalBows;
+})

@@ -1,63 +1,65 @@
 <!DOCTYPE html>
-<script defer src="scrapers.js" charset="utf-8"></script>
+<!-- <script defer type="module" src="scrapers.js" charset="utf-8"></script> -->
 <html lang ="en" dir="ltr">
     <head>
         <link rel="stylesheet" href="scrapers.css">
         <meta charset="utf-8">
         <title>TFT BIS Items</title>
-        <script defer src="scrapers.js" charset="utf-8"></script>
+        <script defer type="module" src="scrapers.js" charset="utf-8"></script>
+        <!-- <script defer type="module" src="scrapers.js" charset="utf-8"></script> -->
     </head>
     <body>
         <div id="items">
         </div>
-            <button class="button" onclick="incrementTear()">
+            <button class="button" id="tearButton">
                 <img src="tear.png"/>
                 <h1 class="button-text" id="tearNum">0</h1>
             </button>
-                <button class="button" onclick="incrementSword()">
+                <button class="button" id="swordButton">
                     <img src="sword.png"/>
                     <h1 class="button-text" id="swordNum">0</h1>
 
                 </button>
-            <button class="button" onclick="incrementBelt()">
+            <button class="button" id="beltButton">
                 <img src="belt.png"/>
                 <h1 class="button-text" id="beltNum">0</h1>
 
             </button>
-
-
         <div>
-            <button class="button" onclick="incrementCloak()">
+            <button class="button" id="cloakButton">
                 <img src="cloak.png"/>
                 <h1 class="button-text" id="cloakNum">0</h1>
             </button>
-                <button class="button" onclick="incrementRod()">
+                <button class="button" id="rodButton">
                     <img src="rod.png"/>
                     <h1 class="button-text" id="rodNum">0</h1>
                 </button>
-            <button class="button" onclick="incrementVest()">
+            <button class="button" id="vestButton">
                 <img src="vest.png"/>
                 <h1 class="button-text" id="vestNum">0</h1>
         </button>
     </div>
 
 <div>
-        <button class="button" onclick="incrementGlove()">
+        <button class="button" id="gloveButton">
             <img src="glove.png"/>
             <h1 class="button-text" id="gloveNum">0</h1>
 
         </button>
-        <button class="button" onclick="incrementBow()">
+        <button class="button" id="bowButton">
             <img src="bow.png"/>
             <h1 class="button-text" id="bowNum">0</h1>
 
         </button>
-        <button class="button" onclick="incrementSpat()">
+        <button class="button" id="spatButton">
             <img src="spat.png"/>
             <h1 class="button-text" id="spatNum">0</h1>
 
         </button>
     </div>
-
+    <!-- <button id="testButton" class="button" onclick="startProgram()">
+        test
+    </button> -->
+    <script defer type="module" src="scrapers.js" charset="utf-8"></script>
     </body>
 </html>
