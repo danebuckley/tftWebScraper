@@ -3,15 +3,15 @@
 // import { start } from 'repl';
 // import { EventEmitter } from 'stream';
 
-let numTears = 0;
-let numRods = 0;
-let numBelts = 0;
-let numSpats = 0;
-let numBows = 0;
-let numCloaks = 0;
-let numVests = 0;
-let numSwords = 0;
-let numGloves = 0;
+let totalTears = 0; //Count of how many tears user has recorded
+let totalRods = 0;
+let totalVests = 0;
+let totalSwords = 0;
+let totalSpats = 0;
+let totalBelts = 0;
+let totalCloaks = 0;
+let totalGloves = 0;
+let totalBows = 0;
 
 
 
@@ -75,7 +75,7 @@ compMap.set("Spatula", 730);
 
 
 var x = new Array(59);
-let userInput = []; //global, probably shouldn't be....
+//let userInput = []; //global, probably shouldn't be....
 
 
 
@@ -89,7 +89,7 @@ for (var i = 0; i < 59; i++) {
 
 
 
-async function scrapeProduct(url) { //nope
+async function scrapeProduct(url) { //this needs to turn into a command that I can just run offline to update the json.
     //alert(puppeteer);
     const browser = await launch();
     const page = await browser.newPage();
@@ -122,35 +122,63 @@ async function scrapeProduct(url) { //nope
     console.log(x[0][0]);
 
     browser.close();
-
-    startProgram();
+    console.log("test");
 }
+
 
 
 function startProgram() {
-    userInput = ["Belt","Bow","Rod"];
-    finalArray = [];
-
-    for (let x = 0; x < userInput.length-1; x++) {
-        for (let y = x+1; y < userInput.length; y++) {
-            finalArray.push(createItem(userInput[x], userInput[y]));
-        }
+    let userInput = [];
+    for (var i = 0; i < totalTears; i++) {
+        userInput.push("Tear");
+    }
+    for (var i = 0; i < totalSwords; i++) {
+        userInput.push("Sword");
+    }
+    for (var i = 0; i < totalBelts; i++) {
+        userInput.push("Belt");
+    }
+    for (var i = 0; i < totalCloaks; i++) {
+        userInput.push("Cloak");
+    }
+    for (var i = 0; i < totalRods; i++) {
+        userInput.push("Rod");
+    }
+    for (var i = 0; i < totalVests; i++) {
+        userInput.push("Vest");
+    }
+    for (var i = 0; i < totalGloves; i++) {
+        userInput.push("Glove");
+    }
+    for (var i = 0; i < totalBows; i++) {
+        userInput.push("Bow");
+    }
+    for (var i = 0; i < totalSpats; i++) {
+        userInput.push("Spat");
     }
 
-    for (let curItem = 0; curItem < finalArray.length; curItem++) {
-        for (let r = 0; r < 59; r++) {
-            if (finalArray[curItem] == x[r][1]) {
-                console.log(x[r][0] + " " + finalArray[curItem]);
-            } else if (finalArray[curItem] == x[r][2]) {
-                console.log(x[r][0] + " " + finalArray[curItem]);
-            } else if (finalArray[curItem] == x[r][3]) {
-                console.log(x[r][0] + " " + finalArray[curItem]);
-            }
-        }
-    }
+
+    // finalArray = [];
+
+    // for (let x = 0; x < userInput.length-1; x++) {
+    //     for (let y = x+1; y < userInput.length; y++) {
+    //         finalArray.push(createItem(userInput[x], userInput[y]));
+    //     }
+    // }
+
+    // for (let curItem = 0; curItem < finalArray.length; curItem++) {
+    //     for (let r = 0; r < 59; r++) {
+    //         if (finalArray[curItem] == x[r][1]) {
+    //             console.log(x[r][0] + " " + finalArray[curItem]);
+    //         } else if (finalArray[curItem] == x[r][2]) {
+    //             console.log(x[r][0] + " " + finalArray[curItem]);
+    //         } else if (finalArray[curItem] == x[r][3]) {
+    //             console.log(x[r][0] + " " + finalArray[curItem]);
+    //         }
+    //     }
+    // }
 
 }
-
 
 
 function createItem(itemOne, itemTwo) {
@@ -158,9 +186,24 @@ function createItem(itemOne, itemTwo) {
 }
 
 
+
+let startButton = document.getElementById('startButton');
+
+startButton.addEventListener('click', function(){
+    startProgram();
+})
+
+
+
+
+
+
+
+
+
+
 //This is all the button and counter handling
 //Tear
-let totalTears = 0; //Count of how many tears user has recorded
 let tearButton = document.getElementById('tearButton');
 let tearElement = document.getElementById('tearNum');
 
@@ -170,7 +213,6 @@ tearButton.addEventListener('click', function(){
 })
 
 //Rod
-let totalRods = 0;
 let rodButton = document.getElementById('rodButton');
 let rodElement = document.getElementById('rodNum');
 
@@ -180,7 +222,6 @@ rodButton.addEventListener('click', function(){
 })
 
 //Vest
-let totalVests = 0;
 let vestButton = document.getElementById('vestButton');
 let vestElement = document.getElementById('vestNum');
 
@@ -190,7 +231,6 @@ vestButton.addEventListener('click', function(){
 })
 
 //Sword
-let totalSwords = 0;
 let swordButton = document.getElementById('swordButton');
 let swordElement = document.getElementById('swordNum');
 
@@ -200,7 +240,6 @@ swordButton.addEventListener('click', function(){
 })
 
 //Spat
-let totalSpats = 0;
 let spatButton = document.getElementById('spatButton');
 let spatElement = document.getElementById('spatNum');
 
@@ -210,7 +249,6 @@ spatButton.addEventListener('click', function(){
 })
 
 //Belt
-let totalBelts = 0;
 let beltButton = document.getElementById('beltButton');
 let beltElement = document.getElementById('beltNum');
 
@@ -220,7 +258,6 @@ beltButton.addEventListener('click', function(){
 })
 
 //Cloak
-let totalCloaks = 0;
 let cloakButton = document.getElementById('cloakButton');
 let cloakElement = document.getElementById('cloakNum');
 
@@ -230,7 +267,6 @@ cloakButton.addEventListener('click', function(){
 })
 
 //Glove
-let totalGloves = 0;
 let gloveButton = document.getElementById('gloveButton');
 let gloveElement = document.getElementById('gloveNum');
 
@@ -240,7 +276,6 @@ gloveButton.addEventListener('click', function(){
 })
 
 //Bow
-let totalBows = 0;
 let bowButton = document.getElementById('bowButton');
 let bowElement = document.getElementById('bowNum');
 
