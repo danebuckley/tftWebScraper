@@ -1,8 +1,3 @@
-// import { launch } from 'puppeteer';
-// import readline from 'readline';
-// import { start } from 'repl';
-// import { EventEmitter } from 'stream';
-
 let totalTears = 0; //Count of how many tears user has recorded
 let totalRods = 0;
 let totalVests = 0;
@@ -17,7 +12,6 @@ let totalBows = 0;
 
 const itemMap = new Map();
 const compMap = new Map();
-const champList = new Array("Alistar", "Annie", "Aphelios", "Ashe", "aurelionsol", "Belveth", "Blitzcrank", "Camille", "Chogath", "Draven", "Ekko", "Ezreal", "Fiddlesticks", "Fiora", "Galio", "Gangplank", "Janna", "Jax", "Jinx", "Kaisa", "Kayle", "Leblanc", "Leesin", "Leona", "lulu", "lux", "malphite", "missfortune", "mordekaiser", "nasus", "nilah", "nunu", "poppy", "rammus", "rell", "renekton", "riven", "samira", "sejuani", "senna", "sett", "sivir", "sona", "soraka", "sylas", "syndra", "taliyah", "talon", "urgot", "vayne", "velkoz", "vi", "viego", "wukong", "yasuo", "yuumi", "zac", "zed", "zoe"); //this needs to be scraped as well.
 itemMap.set(1054, 'Deathblade');
 itemMap.set(823, 'Giant Slayer');
 itemMap.set(945, 'Edge of Night');
@@ -25,7 +19,7 @@ itemMap.set(820, 'Hextech Gunblade');
 itemMap.set(1017, 'Bloodthirster');
 itemMap.set(918, "Zeke's Herald");
 itemMap.set(1036, 'Infinity Edge');
-itemMap.set(1257, 'LaserCorps Emblem');
+itemMap.set(1257, 'InfiniTeam Emblem');
 itemMap.set(592, 'Rapid Firecannon');
 itemMap.set(714, "Titan's Resolve");
 itemMap.set(589, "Guinsoo's Rageblade");
@@ -73,58 +67,7 @@ compMap.set("Rod", 293);
 compMap.set("Belt", 391);
 compMap.set("Spatula", 730);
 
-
-var x = new Array(59);
-//let userInput = []; //global, probably shouldn't be....
-
-
-
-for (var i = 0; i < 59; i++) {
-    x[i] = new Array(4);
-    x[i][0] = champList[i];
-}
-
-
-//scrapeProduct("https://app.mobalytics.gg/tft/champions/");
-
-
-
-async function scrapeProduct(url) { //this needs to turn into a command that I can just run offline to update the json.
-    //alert(puppeteer);
-    const browser = await launch();
-    const page = await browser.newPage();
-    // const page2 = await browser.newPage();
-
-
-    const champCount = 58;
-
-    for (let i = 0; i < champCount; i++) {
-        await page.goto(url + champList[i]);
-        console.log(url+champList[i]);
-
-
-        const [iOne] = await page.$x('//*[@id="container"]/div/main/div/div/div[2]/div[1]/div[4]/div/div/div[1]/div[2]/p'); //this will break on website update, bad for production
-        const itemOne = await iOne.getProperty('textContent');
-        const itemOneTxt = await itemOne.jsonValue();
-
-        const [iTwo] = await page.$x('//*[@id="container"]/div/main/div/div/div[2]/div[1]/div[4]/div/div/div[2]/div[2]/p');
-        const itemTwo = await iTwo.getProperty('textContent');
-        const itemTwoTxt = await itemTwo.jsonValue();
-
-        const [iThree] = await page.$x('//*[@id="container"]/div/main/div/div/div[2]/div[1]/div[4]/div/div/div[3]/div[2]/p');
-        const itemThree = await iThree.getProperty('textContent');
-        const itemThreeTxt = await itemThree.jsonValue();
-
-        x[i][1] = itemOneTxt;
-        x[i][2] = itemTwoTxt;
-        x[i][3] = itemThreeTxt;
-    }
-    console.log(x[0][0]);
-
-    browser.close();
-    console.log("test");
-}
-
+const champList = ['aatrox','alistar','annie','ashe','aurelion_sol','belveth','blitzcrank','camille','draven','ekko','ezreal','fiddlesticks','fiora','gangplank','garen','gnar','janna','jax','jhin','jinx','kaisa','kayle','leblanc','lee_sin','leona','lucian','lulu','lux','malphite','miss_fortune','mordekaiser','morgana','nasus','neeko','nilah','nunu','pantheon','poppy','pyke','rammus','rell','renekton','riven','samira','shen','sivir','sona','sylas','syndra','twisted_fate','ultimate_ezreal','urgot','vayne','vex','vi','viego','warwick','wukong','yasuo'];
 
 
 function startProgram() {
@@ -156,6 +99,53 @@ function startProgram() {
     for (var i = 0; i < totalSpats; i++) {
         userInput.push("Spat");
     }
+
+    let chosenChamps = [];
+
+  
+
+
+    fetch("bisList.json")
+    .then(response => response.json())
+    .then(json => {
+        let potentialItems = [];
+        let numItems = userInput.length;
+        for (let i = 0; i < numItems-1; i++) {
+            for (let j = i+1; j < numItems; j++) {
+                potentialItems.push(createItem(userInput[i], userInput[j]));
+            }
+        }
+
+
+        for(let j = 0; j < champList.length; j++) {
+            for (let i = 0; i < potentialItems.length; i++) {
+                for (let k = 0; k < 3; k++) {
+                    let curItemString = "json." + champList[j] + "[" + k + "]";
+                    let curItem = eval(curItemString);
+                    if (potentialItems[i] == curItem) {
+                        let pushStringTxt = "json." + champList[j];
+                        let pushString = eval(pushStringTxt);
+                        chosenChamps.push([champList[j], pushString]);
+                    } else if (potentialItems[i] == curItem) {
+                        let pushStringTxt = "json." + champList[j];
+                        let pushString = eval(pushStringTxt);
+                        chosenChamps.push(pushString);
+                    } else if (potentialItems[i] == curItem) {
+                        let pushStringTxt = "json." + champList[j];
+                        let pushString = eval(pushStringTxt);
+                        chosenChamps.push(pushString);
+                    }
+                }
+            }
+        }
+
+        console.log(chosenChamps);
+
+
+    });
+
+
+
 
 
     // finalArray = [];
@@ -192,10 +182,6 @@ let startButton = document.getElementById('startButton');
 startButton.addEventListener('click', function(){
     startProgram();
 })
-
-
-
-
 
 
 

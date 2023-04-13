@@ -26,6 +26,10 @@ async function scrapeBIS(url) {
             champDict[element] = [itemOneTxt, itemTwoTxt, itemThreeTxt];
         }
         console.log(champDict);
+        var dictString = JSON.stringify(champDict);
+        writeFile('bisList.json', dictString, (err) => {
+            if (err) throw err;
+        })
     })
     
 

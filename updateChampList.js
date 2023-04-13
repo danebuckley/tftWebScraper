@@ -9,7 +9,7 @@ async function scrapeChampList(url) {
     const page = await browser.newPage();
 
     await page.goto(url);
-    writeFile('champList.txt', "", err=> {
+    writeFile('champList.txt', "[", err=> {
         if (err) {
             console.err;
             return;
@@ -24,14 +24,14 @@ async function scrapeChampList(url) {
         champText = champText.replace(' ', '_');
         champText = champText.toLowerCase();
         if (i != 58) {
-            appendFile('champList.txt', champText + "\n", err => {
+            appendFile('champList.txt', "'" + champText+"',", err => {
                 if (err) {
                     console.err;
                     return;
                 }
             })
         } else {
-            appendFile('champList.txt', champText, err => {
+            appendFile('champList.txt', "'" + champText + "'" + "];", err => {
                 if (err) {
                     console.err;
                     return;
