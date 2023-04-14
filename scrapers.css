@@ -1,6 +1,5 @@
 body {
     background-color:cadetblue;
-
 }
 
 button {
@@ -8,11 +7,20 @@ button {
     border-radius: 8px;
 }
 
-button:hover {
-    border:black 5px solid;
-}
-
 .button-text { 
     font-weight: bold;
     font-size: 20px;
+}
+
+.startButton {
+    height: 70px;
+    font-weight: bold;
+    font-size: 60px;
+}
+
+.displayedText {
+    position:absolute;
+    white-space:pre-line;
+    font-size: 32px;
+    font-weight: bold;
 }

@@ -101,9 +101,7 @@ function startProgram() {
     }
 
     let chosenChamps = [];
-
-  
-
+    let usedChampArray = [];
 
     fetch("bisList.json")
     .then(response => response.json())
@@ -116,7 +114,6 @@ function startProgram() {
             }
         }
 
-
         for(let j = 0; j < champList.length; j++) {
             for (let i = 0; i < potentialItems.length; i++) {
                 for (let k = 0; k < 3; k++) {
@@ -125,48 +122,22 @@ function startProgram() {
                     if (potentialItems[i] == curItem) {
                         let pushStringTxt = "json." + champList[j];
                         let pushString = eval(pushStringTxt);
-                        chosenChamps.push([champList[j], pushString]);
-                    } else if (potentialItems[i] == curItem) {
-                        let pushStringTxt = "json." + champList[j];
-                        let pushString = eval(pushStringTxt);
-                        chosenChamps.push(pushString);
-                    } else if (potentialItems[i] == curItem) {
-                        let pushStringTxt = "json." + champList[j];
-                        let pushString = eval(pushStringTxt);
-                        chosenChamps.push(pushString);
+                        if (!usedChampArray.includes(champList[j])) {
+                            chosenChamps.push([champList[j], pushString]);
+                        }
+                        usedChampArray.push(champList[j]);
                     }
                 }
             }
         }
-
-        console.log(chosenChamps);
-
-
+        //to access a specific champions items, it goes chosenChamps[champNum][1][0/1/2]
+        //                                                            itemArray^
+        document.getElementById("displayedText").textContent="";
+        for (let i = 0; i < chosenChamps.length; i++) {
+            let curString = chosenChamps[i][0] + " uses " + chosenChamps[i][1][0] + ", " + chosenChamps[i][1][1] + " and " + chosenChamps[i][1][2] + ".\n";
+            document.getElementById("displayedText").textContent+=curString;
+        }
     });
-
-
-
-
-
-    // finalArray = [];
-
-    // for (let x = 0; x < userInput.length-1; x++) {
-    //     for (let y = x+1; y < userInput.length; y++) {
-    //         finalArray.push(createItem(userInput[x], userInput[y]));
-    //     }
-    // }
-
-    // for (let curItem = 0; curItem < finalArray.length; curItem++) {
-    //     for (let r = 0; r < 59; r++) {
-    //         if (finalArray[curItem] == x[r][1]) {
-    //             console.log(x[r][0] + " " + finalArray[curItem]);
-    //         } else if (finalArray[curItem] == x[r][2]) {
-    //             console.log(x[r][0] + " " + finalArray[curItem]);
-    //         } else if (finalArray[curItem] == x[r][3]) {
-    //             console.log(x[r][0] + " " + finalArray[curItem]);
-    //         }
-    //     }
-    // }
 
 }
 
