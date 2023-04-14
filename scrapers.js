@@ -158,85 +158,158 @@ startButton.addEventListener('click', function(){
 
 
 
-
-//This is all the button and counter handling
-//Tear
 let tearButton = document.getElementById('tearButton');
+let tearButtonMinus = document.getElementById('tearButtonMinus');
 let tearElement = document.getElementById('tearNum');
 
+let rodButton = document.getElementById('rodButton');
+let rodButtonMinus = document.getElementById('rodButtonMinus');
+let rodElement = document.getElementById('rodNum');
+
+let vestButton = document.getElementById('vestButton');
+let vestButtonMinus = document.getElementById('vestButtonMinus');
+let vestElement = document.getElementById('vestNum');
+
+let swordButton = document.getElementById('swordButton');
+let swordButtonMinus = document.getElementById('swordButtonMinus');
+let swordElement = document.getElementById('swordNum');
+
+let spatButton = document.getElementById('spatButton');
+let spatButtonMinus = document.getElementById('spatButtonMinus');
+let spatElement = document.getElementById('spatNum');
+
+let beltButton = document.getElementById('beltButton');
+let beltButtonMinus = document.getElementById('beltButtonMinus');
+let beltElement = document.getElementById('beltNum');
+
+let cloakButton = document.getElementById('cloakButton');
+let cloakButtonMinus = document.getElementById('cloakButtonMinus');
+let cloakElement = document.getElementById('cloakNum');
+
+let gloveButton = document.getElementById('gloveButton');
+let gloveButtonMinus = document.getElementById('gloveButtonMinus');
+let gloveElement = document.getElementById('gloveNum');
+
+let bowButton = document.getElementById('bowButton');
+let bowButtonMinus = document.getElementById('bowButtonMinus');
+let bowElement = document.getElementById('bowNum');
+
+
+//This is all the button and counter handling
+
+//Tear
 tearButton.addEventListener('click', function(){
     totalTears+=1;
     tearElement.innerHTML = totalTears;
 })
 
-//Rod
-let rodButton = document.getElementById('rodButton');
-let rodElement = document.getElementById('rodNum');
+tearButtonMinus.addEventListener('click', function(){
+    if (totalTears != 0) {
+        totalTears-=1;
+    }
+    tearElement.innerHTML = totalTears;
+})
 
+//Rod
 rodButton.addEventListener('click', function(){
     totalRods+=1;
     rodElement.innerHTML = totalRods;
 })
 
-//Vest
-let vestButton = document.getElementById('vestButton');
-let vestElement = document.getElementById('vestNum');
+rodButtonMinus.addEventListener('click', function(){
+    if (totalRods != 0) {
+        totalRods-=1;
+    }
+    rodElement.innerHTML = totalRods;
+})
 
+//Vest
 vestButton.addEventListener('click', function(){
     totalVests+=1;
     vestElement.innerHTML = totalVests;
 })
 
-//Sword
-let swordButton = document.getElementById('swordButton');
-let swordElement = document.getElementById('swordNum');
+vestButtonMinus.addEventListener('click', function(){
+    if (totalVests != 0) {
+        totalVests-=1;
+    }
+    vestElement.innerHTML = totalVests;
+})
 
+//Sword
 swordButton.addEventListener('click', function(){
     totalSwords+=1;
     swordElement.innerHTML = totalSwords;
 })
 
-//Spat
-let spatButton = document.getElementById('spatButton');
-let spatElement = document.getElementById('spatNum');
+swordButtonMinus.addEventListener('click', function(){
+    if (totalSwords != 0) {
+        totalSwords-=1;
+    }
+    swordElement.innerHTML = totalSwords;
+})
 
+//Spat
 spatButton.addEventListener('click', function(){
     totalSpats+=1;
     spatElement.innerHTML = totalSpats;
 })
 
-//Belt
-let beltButton = document.getElementById('beltButton');
-let beltElement = document.getElementById('beltNum');
+spatButtonMinus.addEventListener('click', function(){
+    if (totalSpats != 0) {
+        totalSpats-=1;
+    }
+    spatElement.innerHTML = totalSpats;
+})
 
+//Belt
 beltButton.addEventListener('click', function(){
     totalBelts+=1;
     beltElement.innerHTML = totalBelts;
 })
 
-//Cloak
-let cloakButton = document.getElementById('cloakButton');
-let cloakElement = document.getElementById('cloakNum');
+beltButtonMinus.addEventListener('click', function(){
+    if (totalBelts != 0) {
+        totalBelts-=1;
+    }
+    beltElement.innerHTML = totalBelts;
+})
 
+//Cloak
 cloakButton.addEventListener('click', function(){
     totalCloaks+=1;
     cloakElement.innerHTML = totalCloaks;
 })
 
-//Glove
-let gloveButton = document.getElementById('gloveButton');
-let gloveElement = document.getElementById('gloveNum');
+cloakButtonMinus.addEventListener('click', function(){
+    if (totalCloaks != 0) {
+        totalCloaks-=1;
+    }
+    cloakElement.innerHTML = totalCloaks;
+})
 
+//Glove
 gloveButton.addEventListener('click', function(){
     totalGloves+=1;
     gloveElement.innerHTML = totalGloves;
 })
 
-//Bow
-let bowButton = document.getElementById('bowButton');
-let bowElement = document.getElementById('bowNum');
+gloveButtonMinus.addEventListener('click', function(){
+    if (totalGloves != 0) {
+        totalGloves-=1;
+    }
+    gloveElement.innerHTML = totalGloves;
+})
 
+//Bow
 bowButton.addEventListener('click', function(){
     totalBows+=1;
+    bowElement.innerHTML = totalBows;
+})
+
+bowButtonMinus.addEventListener('click', function(){
+    if (totalBows != 0) {
+        totalBows-=1;
+    }
     bowElement.innerHTML = totalBows;
 })

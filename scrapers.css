@@ -24,3 +24,130 @@ button {
     font-size: 32px;
     font-weight: bold;
 }
+
+.plusButtonTear {
+    position: absolute;
+    font-weight: bold;
+    font-size: 32px;
+    top: 247px;
+    left: 200px;
+}
+.minusButtonTear {
+    position: absolute;
+    font-weight: bold;
+    font-size: 32px;
+    top: 247px;
+    left: 35px;
+}
+.plusButtonSword {
+    position: absolute;
+    font-weight: bold;
+    font-size: 32px;
+    top: 247px;
+    left: 447px;
+}
+.minusButtonSword {
+    position: absolute;
+    font-weight: bold;
+    font-size: 32px;
+    top: 247px;
+    left: 282px;
+}
+.plusButtonBelt {
+    position: absolute;
+    font-weight: bold;
+    font-size: 32px;
+    top: 247px;
+    left: 694px;
+}
+.minusButtonBelt {
+    position: absolute;
+    font-weight: bold;
+    font-size: 32px;
+    top: 247px;
+    left: 529px;
+}
+.plusButtonCloak {
+    position: absolute;
+    font-weight: bold;
+    font-size: 32px;
+    top: 540px;
+    left: 200px;
+}
+.minusButtonCloak {
+    position: absolute;
+    font-weight: bold;
+    font-size: 32px;
+    top: 540px;
+    left: 35px;
+}
+.plusButtonRod {
+    position: absolute;
+    font-weight: bold;
+    font-size: 32px;
+    top: 540px;
+    left: 447px;
+}
+.minusButtonRod {
+    position: absolute;
+    font-weight: bold;
+    font-size: 32px;
+    top: 540px;
+    left: 282px;
+}
+.plusButtonVest {
+    position: absolute;
+    font-weight: bold;
+    font-size: 32px;
+    top: 540px;
+    left: 694px;
+}
+.minusButtonVest {
+    position: absolute;
+    font-weight: bold;
+    font-size: 32px;
+    top: 540px;
+    left: 529px;
+}
+.plusButtonGlove {
+    position: absolute;
+    font-weight: bold;
+    font-size: 32px;
+    top: 830px;
+    left: 200px;
+}
+.minusButtonGlove {
+    position: absolute;
+    font-weight: bold;
+    font-size: 32px;
+    top: 830px;
+    left: 35px;
+}
+.plusButtonBow {
+    position: absolute;
+    font-weight: bold;
+    font-size: 32px;
+    top: 830px;
+    left: 447px;
+}
+.minusButtonBow {
+    position: absolute;
+    font-weight: bold;
+    font-size: 32px;
+    top: 830px;
+    left: 282px;
+}
+.plusButtonSpat {
+    position: absolute;
+    font-weight: bold;
+    font-size: 32px;
+    top: 830px;
+    left: 694px;
+}
+.minusButtonSpat {
+    position: absolute;
+    font-weight: bold;
+    font-size: 32px;
+    top: 830px;
+    left: 529px;
+}
