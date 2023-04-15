@@ -10,9 +10,7 @@ async function scrapeBIS(url) {
     const browser = await launch();
     const page = await browser.newPage();
 
-
-
-    let champDict = {}
+    let champDict = {};
 
     readFile('champList.txt', 'utf-8', async (err, data) => {
         if (err) throw err;

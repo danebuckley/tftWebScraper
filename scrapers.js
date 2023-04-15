@@ -158,6 +158,9 @@ startButton.addEventListener('click', function(){
 
 
 
+
+
+
 let tearButton = document.getElementById('tearButton');
 let tearButtonMinus = document.getElementById('tearButtonMinus');
 let tearElement = document.getElementById('tearNum');
